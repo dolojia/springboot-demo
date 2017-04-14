@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.EnginesMapper">
+  <resultMap id="BaseResultMap" type="com.example.demo.Engines">
+    <result column="ENGINE" jdbcType="VARCHAR" property="engine" />
+    <result column="SUPPORT" jdbcType="VARCHAR" property="support" />
+    <result column="COMMENT" jdbcType="VARCHAR" property="comment" />
+    <result column="TRANSACTIONS" jdbcType="VARCHAR" property="transactions" />
+    <result column="XA" jdbcType="VARCHAR" property="xa" />
+    <result column="SAVEPOINTS" jdbcType="VARCHAR" property="savepoints" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.demo.Engines">
+    insert into ENGINES (ENGINE, SUPPORT, COMMENT, 
+      TRANSACTIONS, XA, SAVEPOINTS
+      )
+    values (#{engine,jdbcType=VARCHAR}, #{support,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
+      #{transactions,jdbcType=VARCHAR}, #{xa,jdbcType=VARCHAR}, #{savepoints,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.demo.Engines">
+    insert into ENGINES
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="engine != null">
+        ENGINE,
+      </if>
+      <if test="support != null">
+        SUPPORT,
+      </if>
+      <if test="comment != null">
+        COMMENT,
+      </if>
+      <if test="transactions != null">
+        TRANSACTIONS,
+      </if>
+      <if test="xa != null">
+        XA,
+      </if>
+      <if test="savepoints != null">
+        SAVEPOINTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="engine != null">
+        #{engine,jdbcType=VARCHAR},
+      </if>
+      <if test="support != null">
+        #{support,jdbcType=VARCHAR},
+      </if>
+      <if test="comment != null">
+        #{comment,jdbcType=VARCHAR},
+      </if>
+      <if test="transactions != null">
+        #{transactions,jdbcType=VARCHAR},
+      </if>
+      <if test="xa != null">
+        #{xa,jdbcType=VARCHAR},
+      </if>
+      <if test="savepoints != null">
+        #{savepoints,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
