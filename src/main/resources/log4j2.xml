@@ -31,11 +31,11 @@
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
 		</Console>
 
-		<SMTP name="Mail" subject="Error Log" to="xxx"
+<!-- 		<SMTP name="Mail" subject="Error Log" to="xxx"
 			from="xxx" cc="xxx"
 			smtpHost="xxx" smtpPort="25" bufferSize="50"
 			smtpDebug="false">
-		</SMTP>
+		</SMTP> -->
 
 		<RollingRandomAccessFile name="InfoFile"
 			fileName="${log_path}" immediateFlush="false" filePattern="${log_backup_path}">

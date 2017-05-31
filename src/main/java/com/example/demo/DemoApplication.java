@@ -9,17 +9,22 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.persistence.Country;
+import com.example.demo.service.CountryService;
+
 @RestController
 @EnableAutoConfiguration
+@ComponentScan
 public class DemoApplication {
 
 	Logger logger = LogManager.getLogger(DemoApplication.class);
 
 	@Autowired
-	private EnginesMapper enginesMapper;
+	private CountryService countryService;
 
 	@RequestMapping("/")
 	public String home() {
@@ -39,7 +44,8 @@ public class DemoApplication {
 	@RequestMapping("/enginess")
 	public Object enginess() {
 		Map<String, Object> map = new HashMap<>();
-		List<Engines> enginess = enginesMapper.findUserByName("YES");
+		List<Country> enginess = countryService.findByName("YES");
+		enginess.stream().forEach(str -> System.out.println(enginess.toString()));
 		map.put("data", enginess);
 		map.put("status", "success");
 		map.put("code", 0);
