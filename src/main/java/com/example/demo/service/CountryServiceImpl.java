@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.entity.Country;
 import com.example.demo.mapper.CountryMapper;
-import com.example.demo.persistence.Country;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -35,10 +35,10 @@ public class CountryServiceImpl implements CountryService {
 	}
 
 	@Override
-	public PageInfo<Country> queryByPage(String support, Integer pageNo, Integer pageSize) {
+	public PageInfo<Country> queryByPage(Integer pageNo, Integer pageSize) {
 		pageNo = pageNo == null ? 1 : pageNo;
 		pageSize = pageSize == null ? 10 : pageSize;
-		//sql前插入分页数据
+		// sql前插入分页数据
 		PageHelper.startPage(pageNo, pageSize);
 		List<Country> list = countryMapper.findByPage();
 		// 用PageInfo对结果进行包装

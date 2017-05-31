@@ -2,7 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.persistence.Country;
+import com.example.demo.entity.Country;
 import com.github.pagehelper.PageInfo;
 
 public interface CountryService {
@@ -13,6 +13,6 @@ public interface CountryService {
 
 	List<Country> findByName(String support);
 
-	PageInfo<Country> queryByPage(String support, Integer pageNo, Integer pageSize);
+	PageInfo<Country> queryByPage(Integer pageNo, Integer pageSize);
 
 }

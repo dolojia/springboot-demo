@@ -13,7 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.persistence.Country;
+import com.example.demo.entity.Country;
 import com.example.demo.service.CountryService;
 
 @RestController
@@ -41,8 +41,8 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@RequestMapping("/enginess")
-	public Object enginess() {
+	@RequestMapping("/getCountrys")
+	public Object getCountrys() {
 		Map<String, Object> map = new HashMap<>();
 		List<Country> enginess = countryService.findByName("YES");
 		enginess.stream().forEach(str -> System.out.println(enginess.toString()));

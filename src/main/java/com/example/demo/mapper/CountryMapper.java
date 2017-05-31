@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import com.example.demo.persistence.Country;
+import com.example.demo.entity.Country;
 import com.github.pagehelper.PageInfo;
 
 @Mapper

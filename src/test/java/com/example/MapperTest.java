@@ -9,8 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.example.demo.entity.Country;
 import com.example.demo.mapper.CountryMapper;
-import com.example.demo.persistence.Country;
 import com.example.demo.service.CountryService;
 import com.github.pagehelper.PageInfo;
 
@@ -25,15 +25,21 @@ public class MapperTest {
 	@Autowired(required = true)
 	private CountryService countryService;
 
+	/**
+	 * 数据库连接测试
+	 */
 	@Test
 	public void testEngines() {
 		List<Country> countrys = countryMapper.findByName("Armenia");
 		System.out.println(countrys.toString());
 	}
 
+	/**
+	 * 分页测试
+	 */
 	@Test
 	public void testPageInfo() {
-		PageInfo<Country> page = countryService.queryByPage("Armenia", 1, 20);
+		PageInfo<Country> page = countryService.queryByPage(1, 20);
 		System.out.println(page);
 	}
 

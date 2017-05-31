@@ -1,4 +1,4 @@
-package com.example.demo.persistence;
+package com.example.demo.entity;
 
 public class Country {
 	private Long id;
