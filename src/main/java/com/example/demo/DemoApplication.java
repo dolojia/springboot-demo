@@ -13,6 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.common.ApiUrlProperties;
 import com.example.demo.entity.Country;
 import com.example.demo.service.CountryService;
 
@@ -25,6 +26,9 @@ public class DemoApplication {
 
 	@Autowired
 	private CountryService countryService;
+	
+	@Autowired
+	private ApiUrlProperties apiUrlProperties;
 
 	@RequestMapping("/")
 	public String home() {
@@ -34,6 +38,8 @@ public class DemoApplication {
 		logger.info("[log4j2] this is info");
 		logger.warn("[log4j2] this is warn");
 		logger.error("[log4j2] this is error");
+		
+		logger.error("[log4j2] this is apiUrlProperties.getAge" + apiUrlProperties.getAge());
 		return "Hello World!";
 	}
 

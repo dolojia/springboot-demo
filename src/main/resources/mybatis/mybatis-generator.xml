@@ -5,7 +5,7 @@
 <generatorConfiguration>
 	<!-- 数据库驱动 -->
 	<classPathEntry
-		location="D:\workspaceDev\demo\src\main\resources\mybatis\mysql-connector-java-5.1.41.jar" />
+		location="./lib/mysql-connector-java-5.1.41.jar" />
 
 	<context id="DB2Tables" targetRuntime="MyBatis3">
 		<commentGenerator>
@@ -15,9 +15,8 @@
 		</commentGenerator>
 		<!--数据库链接URL，用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://127.0.0.1:3307/information_schema" 
-			userId="xxxx"
-			password="xxx">
+			connectionURL="jdbc:mysql://127.0.0.1:3307/information_schema"
+			userId="xxxx" password="xxx">
 		</jdbcConnection>
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
@@ -48,8 +47,8 @@
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
 		</table>
-		
-		
-			
+
+
+
 	</context>
 </generatorConfiguration>
