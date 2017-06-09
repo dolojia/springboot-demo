@@ -36,12 +36,23 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<!-- 引入spring-boot-starter-security依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
 
@@ -80,21 +91,21 @@
 			<version>3.3.6</version>
 		</dependency>
 		<!-- end 引入log4j2依赖 -->
-		
-		
-		<!-- Email -->  
-		<dependency>  
-		    <groupId>javax.mail</groupId>  
-		    <artifactId>mail</artifactId>  
-		    <version>1.4</version>  
-		</dependency>  
-		  
-		<dependency>  
-		    <groupId>javax.activation</groupId>  
-		    <artifactId>activation</artifactId>  
-		    <version>1.1.1</version>  
-		</dependency>  
-		
+
+
+		<!-- Email -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
 		<!-- fastjson -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -102,6 +113,11 @@
 			<version>1.2.28</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.3.2</version>
+		</dependency>
 
 	</dependencies>
 

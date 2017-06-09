@@ -15,8 +15,8 @@
 		</commentGenerator>
 		<!--数据库链接URL，用户名、密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://127.0.0.1:3307/information_schema"
-			userId="xxxx" password="xxx">
+			connectionURL="jdbc:mysql://127.0.0.1:3307/dev"
+			userId="root" password="usbw">
 		</jdbcConnection>
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
@@ -42,7 +42,12 @@
 		</javaClientGenerator>
 
 		<!-- 要生成哪些表 -->
-		<table tableName="engines" domainObjectName="Engines"
+		<table tableName="Role" domainObjectName="Role"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+		</table>
+		<table tableName="User" domainObjectName="User"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
 			selectByExampleQueryId="false">
