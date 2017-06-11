@@ -14,12 +14,10 @@
  * limitations under the License.
  */
 
-package com.example.demo.controller;
+package com.example.demo;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
-
-import com.example.demo.Application;
 
 /**
  * 描述： 部署至Tomcat需要 修改启动类， 继承 SpringBootServletInitializer 并重写 configure 方法<br>

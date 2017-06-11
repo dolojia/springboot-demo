@@ -17,6 +17,9 @@ import com.example.demo.configuration.ApiUrlProperties;
 import com.example.demo.entity.Country;
 import com.example.demo.service.CountryService;
 
+import io.swagger.annotations.ApiOperation;
+import springfox.documentation.annotations.ApiIgnore;
+
 /**
  * 描述：<br>
  * 作者：dolojia <br>
@@ -24,6 +27,7 @@ import com.example.demo.service.CountryService;
  * E-mail: dolojia@gmail.com<br>
  */
 @Controller
+@ApiIgnore
 public class HelloController {
 
 	Logger logger = LogManager.getLogger(Application.class);
@@ -34,17 +38,18 @@ public class HelloController {
 	@Autowired
 	private ApiUrlProperties apiUrlProperties;
 
-	@RequestMapping("/")
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index() {
 		return "index";
 	}
-	
-	@RequestMapping("/home")
+
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String gohome() {
 		return "index";
 	}
 
-	@RequestMapping("/hello")
+	@RequestMapping(value = "/hello", method = RequestMethod.GET)
+	@ApiOperation(value = "say hello")
 	public String hello() {
 		System.out.println("[log4j2] this is system.out");
 		logger.trace("[log4j2] this is start");
@@ -61,26 +66,25 @@ public class HelloController {
 		return "login";
 	}
 
-	@RequestMapping("/getCountrys")
-	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+	@RequestMapping(value = "/getCountrys", method = RequestMethod.GET)
+//	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
 	@ResponseBody
 	public String getCountrys() {
 		List<Country> enginess = countryService.findByName("Armenia");
 		enginess.stream().forEach(str -> System.out.println(enginess.toString()));
 		return JSONResult.fillResultString(JSONResult.STATUS_SUCCESS, "/getCountrys", 200, enginess);
 	}
-	
-	@RequestMapping(value = "/helloadmin", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/helloadmin", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyRole('ADMIN')")
-	public String helloAdmin(){
-	    return "helloAdmin";
+	public String helloAdmin() {
+		return "helloAdmin";
 	}
 
-	@RequestMapping(value = "/hellouser", method=RequestMethod.GET)
+	@RequestMapping(value = "/hellouser", method = RequestMethod.GET)
 	@PreAuthorize("hasAnyRole('ADMIN', 'USER')")
-	public String helloUser(){
-	    return "helloUser";
+	public String helloUser() {
+		return "helloUser";
 	}
-	
 
 }

@@ -40,8 +40,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests()
 				// 过滤请求，过滤的所有请求 都放行
 				.antMatchers("/", "/home", "/401", "/403", "/404", "/500").permitAll()
-				// 所有请求需要身份认证
-				.anyRequest().authenticated()
+				// 所有请求需要身份认证,如不开启则只校验接口上加注解方法
+//				.anyRequest().authenticated()
 				// formLogin() 定义当需要用户登录时候，转到的登录页面
 				.and().formLogin().loginPage("/login")
 				// defaultSuccessUrl默认成功跳转页，如不设置默认为"/"
