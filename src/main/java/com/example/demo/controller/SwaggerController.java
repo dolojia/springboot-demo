@@ -44,8 +44,8 @@ public class SwaggerController {
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	@ResponseBody
 	public String postUser(@RequestBody User user) {
-		userService.insertUser(user);
-		return "success";
+		int count = userService.insertUser(user);
+		return JSONResult.fillResultString(JSONResult.STATUS_SUCCESS, "/swagger/addUser", 200, count);
 	}
 
 	// paramType = "query" http://url?id=10
@@ -54,8 +54,9 @@ public class SwaggerController {
 	@ApiImplicitParam(name = "id", value = "用户ID", required = true, dataType = "Long", paramType = "path")
 	@RequestMapping(value = "/getUser/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public User getUser(@PathVariable Long id) {
-		return userService.getUserById(id);
+	public String getUser(@PathVariable Long id) {
+		User user = userService.getUserById(id);
+		return JSONResult.fillResultString(JSONResult.STATUS_SUCCESS, "/swagger/getUser", 200, user);
 	}
 
 	@ApiOperation(value = "更新用户详细信息", notes = "根据url的id来指定更新对象，并根据传过来的user信息来更新用户详细信息")
@@ -66,8 +67,8 @@ public class SwaggerController {
 	@ResponseBody
 	public String putUser(@PathVariable Long id, @RequestBody User user) {
 		user.setId(id);
-		userService.updateUserById(user);
-		return "success";
+		int count = userService.updateUserById(user);
+		return JSONResult.fillResultString(JSONResult.STATUS_SUCCESS, "/swagger/updateUser", 200, count);
 	}
 
 	@ApiOperation(value = "删除用户", notes = "根据url的id来指定删除对象")
@@ -75,8 +76,8 @@ public class SwaggerController {
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public String deleteUser(@PathVariable Long id) {
-		userService.delUserById(id);
-		return "success";
+		int count = userService.delUserById(id);
+		return JSONResult.fillResultString(JSONResult.STATUS_SUCCESS, "/swagger/delete", 200, count);
 	}
 
 }

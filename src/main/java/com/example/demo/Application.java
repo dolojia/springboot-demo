@@ -2,6 +2,8 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 /**
  * 描述：spring-boot启动主方法<br>
@@ -10,10 +12,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * E-mail: dolojia@gmail.com<br>
  */
 @SpringBootApplication
-public class Application {
+public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(Application.class, args);
+	}
+
+	/**
+	 * 方法名称：configure <br>
+	 * 描述：部署至Tomcat需要 修改启动类， 继承 SpringBootServletInitializer 并重写 configure 方法
+	 * 
+	 * @return
+	 */
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(this.getClass());
 	}
 
 }
