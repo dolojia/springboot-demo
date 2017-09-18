@@ -15,3 +15,20 @@
 ##### 集成spring thymeleaf、security       --2017-06-09
 
 ##### 集成Swagger2构建RESTful API文档           --2017-06-11
+
+##### 新增Excel导出功能
+
+## Maven镜像
+
+使用国外的Maven仓库速度很慢、甚至连接不上，很容易出错。可以使用aliyun的Maven镜像仓库。
+
+修改maven的settings.xml文件，mirrors部分使用以下配置：
+
+	<mirrors>
+	  <mirror>
+	    <id>central</id>
+	    <mirrorOf>*</mirrorOf>
+	    <name>Nexus Aliyun</name>
+	    <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+	  </mirror>
+	</mirrors>
