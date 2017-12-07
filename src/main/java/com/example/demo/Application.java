@@ -2,6 +2,7 @@ package com.example.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
@@ -10,8 +11,9 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  * 作者：dolojia <br>
  * 修改日期：2017年6月11日上午10:32:27 <br>
  * E-mail: dolojia@gmail.com<br>
+ * (exclude = { DataSourceAutoConfiguration.class }) 屏蔽原数据源
  */
-@SpringBootApplication
+@SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
 public class Application extends SpringBootServletInitializer {
 
 	public static void main(String[] args) throws Exception {
