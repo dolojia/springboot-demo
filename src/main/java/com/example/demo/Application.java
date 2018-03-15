@@ -4,7 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.ErrorPage;
+import org.springframework.boot.web.servlet.ErrorPageRegistrar;
+import org.springframework.boot.web.servlet.ErrorPageRegistry;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.http.HttpStatus;
 
 /**
  * 描述：spring-boot启动主方法<br>
@@ -14,7 +18,10 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  * (exclude = { DataSourceAutoConfiguration.class }) 屏蔽原数据源
  */
 @SpringBootApplication(exclude = { DataSourceAutoConfiguration.class })
-public class Application extends SpringBootServletInitializer {
+public class Application extends SpringBootServletInitializer implements ErrorPageRegistrar
+
+
+{
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(Application.class, args);
@@ -31,4 +38,12 @@ public class Application extends SpringBootServletInitializer {
 		return builder.sources(this.getClass());
 	}
 
+	@Override
+	public void registerErrorPages(ErrorPageRegistry errorPageRegistry) {
+		errorPageRegistry.addErrorPages(new ErrorPage(HttpStatus.UNAUTHORIZED, "/401"));
+		errorPageRegistry.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, "/403"));
+		errorPageRegistry.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404"));
+//		errorPageRegistry.addErrorPages(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500"));
+
+	}
 }

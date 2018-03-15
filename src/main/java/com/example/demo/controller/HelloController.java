@@ -50,7 +50,7 @@ public class HelloController {
 
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
 	@ApiOperation(value = "say hello")
-	public String hello() {
+	public String hello() throws Exception {
 		System.out.println("[log4j2] this is system.out");
 		logger.trace("[log4j2] this is start");
 		logger.debug("[log4j2] this is debug");
@@ -58,7 +58,8 @@ public class HelloController {
 		logger.warn("[log4j2] this is warn");
 		logger.error("[log4j2] this is error");
 		logger.error("[log4j2] this is apiUrlProperties.getAge" + apiUrlProperties.getAge());
-		return "hello";
+		throw new NullPointerException("故意异常");
+//		return "hello";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
