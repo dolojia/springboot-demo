@@ -23,6 +23,9 @@ public class LogCostFilter implements Filter{
 
     Logger logger = LogManager.getLogger(Application.class);
 
+    private static final String REQUEST_PREFIX = "Request: ";
+    private static final String RESPONSE_PREFIX = "Response: ";
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -40,15 +43,13 @@ public class LogCostFilter implements Filter{
             response = (HttpServletResponse)servletResponse;
         }
 
-        String param = "";
-        if (logger.isDebugEnabled()) {
+        logger.info("=================="+ request.getHeader("userAgent"));
 
-        }
+        String params = "";
+        String requestURl = request.getRequestURL().toString();
         String method = request.getMethod();
-        String requestURI = request.getRequestURI();
         if("POST".equalsIgnoreCase(method)){
-            param = this.getBodyString(request.getReader());
-
+            params = this.getBodyString(request.getReader());
         }else{
             Map<String,String[]> pramMaps = request.getParameterMap();
             Enumeration<String> enu = request.getParameterNames();
@@ -57,17 +58,18 @@ public class LogCostFilter implements Filter{
                 String paramName = enu.nextElement().trim();
                 pramMap.put(paramName, request.getParameter(paramName));
             }
-            requestURI = pramMap.toString();
+            params = pramMap.toString();
         }
-        logger.info(requestURI  + ",[" + method + "]request:" + param);
+        logger.info(REQUEST_PREFIX + "[" + method + "]" + requestURl  + "," +  params);
 
         ResponseWrapper responseWrapper = new ResponseWrapper(response);
+
         filterChain.doFilter(servletRequest,responseWrapper);
         String result = responseWrapper.getResponseData(response.getCharacterEncoding());
         //获取response返回的内容并重新写入response
         response.getOutputStream().write(result.getBytes());
-        long exec = System.currentTimeMillis()-start;
-        logger.info( requestURI + ",[" + method + "]response:" + result + ",[" +exec + "]");
+        long exeCost = System.currentTimeMillis()-start;
+        logger.info( RESPONSE_PREFIX + "[" + method + "]" +requestURl +  "," + result + ",exeCost[" + exeCost + "]");
     }
 
     @Override
@@ -76,7 +78,7 @@ public class LogCostFilter implements Filter{
     }
 
     //获取request请求body中参数
-    public static String getBodyString(BufferedReader br) {
+    private static String getBodyString(BufferedReader br) {
         String inputLine;
         String str = "";
         try {
