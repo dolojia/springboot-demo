@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import com.example.demo.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,4 +89,15 @@ public class HelloController {
 		return "helloUser";
 	}
 
+	@RequestMapping(value = "/testPost", method = RequestMethod.POST)
+	@ResponseBody
+	public String testPost() {
+		return JSONResult.fillResultString(JSONResult.STATUS_SUCCESS, "/testPost", 200, "");
+	}
+
+	@RequestMapping(value = "/testGet", method = RequestMethod.GET)
+	@ResponseBody
+	public String testGet() {
+		return JSONResult.fillResultString(JSONResult.STATUS_SUCCESS, "/testGet", 200, "");
+	}
 }

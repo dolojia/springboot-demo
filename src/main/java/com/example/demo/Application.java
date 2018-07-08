@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.filter.LogCostFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -7,8 +8,13 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ErrorPage;
 import org.springframework.boot.web.servlet.ErrorPageRegistrar;
 import org.springframework.boot.web.servlet.ErrorPageRegistry;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 描述：spring-boot启动主方法<br>
@@ -44,6 +50,17 @@ public class Application extends SpringBootServletInitializer implements ErrorPa
 		errorPageRegistry.addErrorPages(new ErrorPage(HttpStatus.FORBIDDEN, "/403"));
 		errorPageRegistry.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/404"));
 //		errorPageRegistry.addErrorPages(new ErrorPage(HttpStatus.INTERNAL_SERVER_ERROR, "/500"));
-
 	}
+
+	@Bean
+	public FilterRegistrationBean filterRegistrationBean() {
+		FilterRegistrationBean registrationBean = new FilterRegistrationBean();
+		LogCostFilter httpBasicFilter = new LogCostFilter();
+		registrationBean.setFilter(httpBasicFilter);
+		List<String> urlPatterns = new ArrayList<>();
+		urlPatterns.add("/*");
+		registrationBean.setUrlPatterns(urlPatterns);
+		return registrationBean;
+	}
+
 }
